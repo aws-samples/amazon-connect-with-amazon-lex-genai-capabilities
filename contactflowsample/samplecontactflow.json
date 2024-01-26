@@ -1,0 +1,493 @@
+{
+    "Version": "2019-10-30",
+    "StartAction": "0736202c-fdc5-4ff3-9904-061422d30e47",
+    "Metadata": {
+        "entryPointPosition": {
+            "x": -224.8,
+            "y": 21.6
+        },
+        "ActionMetadata": {
+            "0736202c-fdc5-4ff3-9904-061422d30e47": {
+                "position": {
+                    "x": -116,
+                    "y": 3.2
+                }
+            },
+            "a0034446-fd6f-431a-a85d-499951fdbf90": {
+                "position": {
+                    "x": 110.4,
+                    "y": -11.2
+                },
+                "conditions": [],
+                "conditionMetadata": [
+                    {
+                        "id": "6227f8c0-38d5-4ef7-94dc-233a29162422",
+                        "operator": {
+                            "name": "Equals",
+                            "value": "Equals",
+                            "shortDisplay": "="
+                        },
+                        "value": "VOICE"
+                    },
+                    {
+                        "id": "371255ac-1e27-4f15-8e27-1dafc0451f5c",
+                        "operator": {
+                            "name": "Equals",
+                            "value": "Equals",
+                            "shortDisplay": "="
+                        },
+                        "value": "CHAT"
+                    }
+                ]
+            },
+            "a6b2d0ad-7771-4919-ac36-8127622ab9c8": {
+                "position": {
+                    "x": 398.4,
+                    "y": -64.8
+                }
+            },
+            "68d4506a-1eee-4e11-b170-f4e6a68e3df1": {
+                "position": {
+                    "x": 1042.4,
+                    "y": 296
+                }
+            },
+            "26ebfcf4-41cc-4cf2-9575-b43a3075f27e": {
+                "position": {
+                    "x": 1540.8,
+                    "y": 217.6
+                }
+            },
+            "1b6539b5-0d6e-4478-9c74-017c81c7a5f4": {
+                "position": {
+                    "x": 1710.4,
+                    "y": -530.4
+                }
+            },
+            "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3": {
+                "position": {
+                    "x": 2520.8,
+                    "y": 769.6
+                }
+            },
+            "515cffd6-6f59-492d-ad1b-1176ebff7234": {
+                "position": {
+                    "x": 2257.6,
+                    "y": 277.6
+                }
+            },
+            "ce07586d-dedf-4823-aff6-f0ae8d5f9e6c": {
+                "position": {
+                    "x": 698.4,
+                    "y": -148.8
+                },
+                "parameters": {
+                    "QueueId": {
+                        "displayName": "BasicQueue"
+                    }
+                },
+                "queue": {
+                    "text": "BasicQueue"
+                }
+            },
+            "92b38765-cfce-44dd-935b-dd72eac88262": {
+                "position": {
+                    "x": 2153.6,
+                    "y": -124
+                }
+            },
+            "bdd4ccd4-1010-4c84-b23f-b716d843aaed": {
+                "position": {
+                    "x": 1071.2,
+                    "y": -207.2
+                },
+                "parameters": {
+                    "LexV2Bot": {
+                        "AliasArn": {
+                            "displayName": "prodversion",
+                            "useLexBotDropdown": true,
+                            "lexV2BotName": "amazonlexbot"
+                        }
+                    }
+                },
+                "dynamicMetadata": {
+                    "available_intents": false
+                },
+                "useLexBotDropdown": true,
+                "lexV2BotName": "amazonlexbot",
+                "lexV2BotAliasName": "prodversion",
+                "conditionMetadata": [
+                    {
+                        "id": "8e52768f-01b9-47b0-bb95-8e9ddfeab2cd",
+                        "operator": {
+                            "name": "Equals",
+                            "value": "Equals",
+                            "shortDisplay": "="
+                        },
+                        "value": "orderStatus"
+                    },
+                    {
+                        "id": "5ad0ee94-bd7d-47f2-bdf7-6cea592b005a",
+                        "operator": {
+                            "name": "Equals",
+                            "value": "Equals",
+                            "shortDisplay": "="
+                        },
+                        "value": "technicalSupport"
+                    },
+                    {
+                        "id": "34e316cd-5698-4095-9d51-8e087a3106d3",
+                        "operator": {
+                            "name": "Equals",
+                            "value": "Equals",
+                            "shortDisplay": "="
+                        },
+                        "value": "updatePaymentMethod"
+                    },
+                    {
+                        "id": "27b26dd2-010c-48de-931c-1209518ce186",
+                        "operator": {
+                            "name": "Equals",
+                            "value": "Equals",
+                            "shortDisplay": "="
+                        },
+                        "value": "FallbackIntent"
+                    },
+                    {
+                        "id": "c654640c-e332-4a0d-a4d3-8289a033160d",
+                        "operator": {
+                            "name": "Equals",
+                            "value": "Equals",
+                            "shortDisplay": "="
+                        },
+                        "value": " manifest"
+                    }
+                ]
+            },
+            "a0a90c8e-bd2b-4057-81b4-cdffae496fce": {
+                "position": {
+                    "x": 1819.2,
+                    "y": -105.6
+                },
+                "parameters": {
+                    "LexV2Bot": {
+                        "AliasArn": {
+                            "displayName": "prodversion",
+                            "useLexBotDropdown": true,
+                            "lexV2BotName": "amazonlexbot"
+                        }
+                    }
+                },
+                "dynamicMetadata": {
+                    "available_intents": false
+                },
+                "useLexBotDropdown": true,
+                "lexV2BotName": "amazonlexbot",
+                "lexV2BotAliasName": "prodversion",
+                "conditionMetadata": [
+                    {
+                        "id": "588edd5c-5b57-496b-acff-416b26df3f8b",
+                        "operator": {
+                            "name": "Equals",
+                            "value": "Equals",
+                            "shortDisplay": "="
+                        },
+                        "value": "no"
+                    },
+                    {
+                        "id": "fb27e66d-6f26-42c6-b78d-2e5360f42ca3",
+                        "operator": {
+                            "name": "Equals",
+                            "value": "Equals",
+                            "shortDisplay": "="
+                        },
+                        "value": "yes"
+                    }
+                ]
+            }
+        },
+        "Annotations": [],
+        "name": "sample_contact_flow",
+        "description": "",
+        "type": "contactFlow",
+        "status": "published",
+        "hash": {}
+    },
+    "Actions": [
+        {
+            "Parameters": {
+                "FlowLoggingBehavior": "Enabled"
+            },
+            "Identifier": "0736202c-fdc5-4ff3-9904-061422d30e47",
+            "Type": "UpdateFlowLoggingBehavior",
+            "Transitions": {
+                "NextAction": "a0034446-fd6f-431a-a85d-499951fdbf90"
+            }
+        },
+        {
+            "Parameters": {
+                "ComparisonValue": "$.Channel"
+            },
+            "Identifier": "a0034446-fd6f-431a-a85d-499951fdbf90",
+            "Type": "Compare",
+            "Transitions": {
+                "NextAction": "68d4506a-1eee-4e11-b170-f4e6a68e3df1",
+                "Conditions": [
+                    {
+                        "NextAction": "a6b2d0ad-7771-4919-ac36-8127622ab9c8",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "VOICE"
+                            ]
+                        }
+                    },
+                    {
+                        "NextAction": "a6b2d0ad-7771-4919-ac36-8127622ab9c8",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "CHAT"
+                            ]
+                        }
+                    }
+                ],
+                "Errors": [
+                    {
+                        "NextAction": "68d4506a-1eee-4e11-b170-f4e6a68e3df1",
+                        "ErrorType": "NoMatchingCondition"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "Text": "Welcome to Generative AI with Amazon Connect. I am an Amazon Lex Bot integrated with Amazon Bedrock to improve my understanding. \n"
+            },
+            "Identifier": "a6b2d0ad-7771-4919-ac36-8127622ab9c8",
+            "Type": "MessageParticipant",
+            "Transitions": {
+                "NextAction": "ce07586d-dedf-4823-aff6-f0ae8d5f9e6c",
+                "Errors": [
+                    {
+                        "NextAction": "68d4506a-1eee-4e11-b170-f4e6a68e3df1",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {},
+            "Identifier": "68d4506a-1eee-4e11-b170-f4e6a68e3df1",
+            "Type": "DisconnectParticipant",
+            "Transitions": {}
+        },
+        {
+            "Parameters": {
+                "Text": "An Error Occured in the Lex Bot"
+            },
+            "Identifier": "26ebfcf4-41cc-4cf2-9575-b43a3075f27e",
+            "Type": "MessageParticipant",
+            "Transitions": {
+                "NextAction": "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3",
+                "Errors": [
+                    {
+                        "NextAction": "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "Text": "I'm sorry. I could not understand that. "
+            },
+            "Identifier": "1b6539b5-0d6e-4478-9c74-017c81c7a5f4",
+            "Type": "MessageParticipant",
+            "Transitions": {
+                "NextAction": "bdd4ccd4-1010-4c84-b23f-b716d843aaed",
+                "Errors": [
+                    {
+                        "NextAction": "bdd4ccd4-1010-4c84-b23f-b716d843aaed",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {},
+            "Identifier": "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3",
+            "Type": "DisconnectParticipant",
+            "Transitions": {}
+        },
+        {
+            "Parameters": {},
+            "Identifier": "515cffd6-6f59-492d-ad1b-1176ebff7234",
+            "Type": "TransferContactToQueue",
+            "Transitions": {
+                "NextAction": "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3",
+                "Errors": [
+                    {
+                        "NextAction": "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3",
+                        "ErrorType": "QueueAtCapacity"
+                    },
+                    {
+                        "NextAction": "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "QueueId": "arn:aws:connect:us-west-2:123456789:instance/50436053-3b70-417a-904e-ab5e769aae1e/queue/67777cdc-a968-4008-82af-c66ef76820a8"
+            },
+            "Identifier": "ce07586d-dedf-4823-aff6-f0ae8d5f9e6c",
+            "Type": "UpdateContactTargetQueue",
+            "Transitions": {
+                "NextAction": "bdd4ccd4-1010-4c84-b23f-b716d843aaed",
+                "Errors": [
+                    {
+                        "NextAction": "68d4506a-1eee-4e11-b170-f4e6a68e3df1",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "Text": "Thank You for you time today and we look forward to hearing from you again."
+            },
+            "Identifier": "92b38765-cfce-44dd-935b-dd72eac88262",
+            "Type": "MessageParticipant",
+            "Transitions": {
+                "NextAction": "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3",
+                "Errors": [
+                    {
+                        "NextAction": "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "Text": "How can I help you today?",
+                "LexV2Bot": {
+                    "AliasArn": "arn:aws:lex:us-west-2:123456789:bot-alias/YY9557EM03/LQ1YCOYG6U"
+                },
+                "LexSessionAttributes": {
+                    "available_intents": "orderStatus,technicalSupport,updatePaymentMethod,manifest"
+                }
+            },
+            "Identifier": "bdd4ccd4-1010-4c84-b23f-b716d843aaed",
+            "Type": "ConnectParticipantWithLexBot",
+            "Transitions": {
+                "NextAction": "26ebfcf4-41cc-4cf2-9575-b43a3075f27e",
+                "Conditions": [
+                    {
+                        "NextAction": "a0a90c8e-bd2b-4057-81b4-cdffae496fce",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "orderStatus"
+                            ]
+                        }
+                    },
+                    {
+                        "NextAction": "515cffd6-6f59-492d-ad1b-1176ebff7234",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "technicalSupport"
+                            ]
+                        }
+                    },
+                    {
+                        "NextAction": "a0a90c8e-bd2b-4057-81b4-cdffae496fce",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "updatePaymentMethod"
+                            ]
+                        }
+                    },
+                    {
+                        "NextAction": "1b6539b5-0d6e-4478-9c74-017c81c7a5f4",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "FallbackIntent"
+                            ]
+                        }
+                    },
+                    {
+                        "NextAction": "a0a90c8e-bd2b-4057-81b4-cdffae496fce",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                " manifest"
+                            ]
+                        }
+                    }
+                ],
+                "Errors": [
+                    {
+                        "NextAction": "42ae74e9-0668-4cb5-98bc-4bd27f40e6d3",
+                        "ErrorType": "NoMatchingCondition"
+                    },
+                    {
+                        "NextAction": "26ebfcf4-41cc-4cf2-9575-b43a3075f27e",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "Text": "Is there anything else I can help you with today?",
+                "LexV2Bot": {
+                    "AliasArn": "arn:aws:lex:us-west-2:123456789:bot-alias/YY9557EM03/LQ1YCOYG6U"
+                },
+                "LexSessionAttributes": {
+                    "available_intents": "no,yes"
+                }
+            },
+            "Identifier": "a0a90c8e-bd2b-4057-81b4-cdffae496fce",
+            "Type": "ConnectParticipantWithLexBot",
+            "Transitions": {
+                "NextAction": "92b38765-cfce-44dd-935b-dd72eac88262",
+                "Conditions": [
+                    {
+                        "NextAction": "92b38765-cfce-44dd-935b-dd72eac88262",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "no"
+                            ]
+                        }
+                    },
+                    {
+                        "NextAction": "bdd4ccd4-1010-4c84-b23f-b716d843aaed",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "yes"
+                            ]
+                        }
+                    }
+                ],
+                "Errors": [
+                    {
+                        "NextAction": "bdd4ccd4-1010-4c84-b23f-b716d843aaed",
+                        "ErrorType": "NoMatchingCondition"
+                    },
+                    {
+                        "NextAction": "92b38765-cfce-44dd-935b-dd72eac88262",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        }
+    ]
+}

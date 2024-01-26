@@ -1,0 +1,30 @@
+[
+    {
+      "ParameterKey": "AmazonECRImageUri",
+      "ParameterValue": "123456789.dkr.ecr.us-west-2.amazonaws.com/amazontestimage:latest"
+    },
+    {
+      "ParameterKey": "AmazonConnectName",
+      "ParameterValue": "amazomconnectdemoinstance"
+    },
+    {
+      "ParameterKey": "AmazonLexBotName",
+      "ParameterValue": "amazonlexbot"
+    },  
+    {
+      "ParameterKey": "AmazonLexBotAliasName",
+      "ParameterValue": "prodversion"
+    },
+    {
+      "ParameterKey": "LoggingLevel",
+      "ParameterValue": "INFO"
+    },
+    {
+      "ParameterKey": "ModelID",
+      "ParameterValue": "anthropic.claude-instant-v1"
+    },
+    {
+      "ParameterKey": "PredictionConfidence",
+      "ParameterValue": "0.75"
+    }
+]

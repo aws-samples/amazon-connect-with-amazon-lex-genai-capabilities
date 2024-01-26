@@ -1,0 +1,330 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  AmazonECRImageUri:
+    Description: Amazon ECR image URI
+    Type: String
+  AmazonConnectName:
+    Description: Amazon Connect Name
+    Type: String
+  AmazonLexBotName:
+    Description: Amazon Lex Bot Name
+    Type: String
+  AmazonLexBotAliasName:
+    Description: Amazon Lex Bot Alias Name
+    Type: String
+  LoggingLevel:
+    Description: Amazon CloudWatch Logs Logging Level
+    Type: String
+  ModelID:
+    Description: Amazon LLM Model ID
+    Type: String
+  PredictionConfidence:
+    Description: Amazon LLM Model Prediction Confidence
+    Type: String
+Resources:
+  ##########################################################################
+  #  IAM ROLES AND POLICIES                                                #
+  ##########################################################################
+  # Lambda Execution Role
+  AWSLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: /
+      Policies:
+      - PolicyName: LambdaBedrockPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Resource: 
+            - !Sub arn:aws:bedrock:${AWS::Region}::foundation-model/${ModelID}
+            Action:
+              - bedrock:InvokeModel
+              - bedrock:ListFoundationModels
+      - PolicyName: LambdaLexPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Resource: "*"
+            Action:
+              - lex:ListSlotTypes,
+              - lex:DescribeIntent,
+              - lex:ListIntents,
+              - lex:ListSlots
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+  # Amazon Lex Bot Runtime Role
+  BotRuntimeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lexv2.amazonaws.com
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+      - PolicyName: AmazonLexBotPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+              - polly:SynthesizeSpeech,
+              - comprehend:DetectSentiment
+            
+
+  ##########################################################################
+  #  AWS Lambda Function                                                   #
+  ##########################################################################
+  AWSLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      PackageType: Image
+      Role:
+        Fn::GetAtt:
+        - AWSLambdaRole
+        - Arn
+      Code:
+        ImageUri: !Ref 'AmazonECRImageUri'
+      Architectures:
+        - x86_64
+      MemorySize: 1024
+      Timeout: 300
+      ReservedConcurrentExecutions: 5
+      Environment:
+        Variables:
+          LOGGING_LEVEL: !Ref LoggingLevel
+          MODEL_ID: !Ref ModelID
+          PREDICTION_CONFIDENCE: !Ref PredictionConfidence
+          REGION_NAME: !Ref AWS::Region
+
+  ##########################################################################
+  #  Amazon Lex Bot                                                        #
+  ##########################################################################
+  AmazonLexBot:
+    DependsOn:
+      - AWSLambdaFunction
+    Type: AWS::Lex::Bot
+    Properties:
+      Name: !Ref AmazonLexBotName
+      RoleArn: !GetAtt BotRuntimeRole.Arn
+      DataPrivacy:
+        ChildDirected: false
+      IdleSessionTTLInSeconds: 300
+      Description: "This is a bot that integrates with LLMs"
+      AutoBuildBotLocales: false
+      BotLocales:
+        - LocaleId: "en_US"
+          Description: "This is a bot that integrates with LLMs"
+          NluConfidenceThreshold: 0.40
+          VoiceSettings:
+            VoiceId: "Stephen"
+          SlotTypes:
+            - Name: "Query"
+              Description: "Slot Type description"
+              SlotTypeValues:
+                - SampleValue:
+                    Value: manifest
+              ValueSelectionSetting:
+                ResolutionStrategy: ORIGINAL_VALUE
+          Intents:
+            - Name: "customBusinessVocabIntent"
+              Description: "For any financials related questions"
+            - Name: "no"
+              Description: "Customer response"
+              SampleUtterances:
+                - Utterance: "No"
+                - Utterance: "No thats it"
+                - Utterance: "negative"
+                - Utterance: "not today"
+                - Utterance: "That's all"
+            - Name: "yes"
+              Description: "Customer response "
+              SampleUtterances:
+                - Utterance: "yes"
+                - Utterance: "affirmative"
+                - Utterance: "positive"
+                - Utterance: "yea"
+                - Utterance: "roger"
+            - Name: "updatePaymentMethod"
+              Description: "Information on the payment methods"
+              SampleUtterances:
+                - Utterance: "i want to update my payment method"
+            - Name: "technicalSupport"
+              Description: "Requesting technical support"
+              SampleUtterances:
+                - Utterance: "I need technical support"
+                - Utterance: "I want to speak with an agent"
+                - Utterance: "I need technical help"
+            - Name: "orderStatus"
+              Description: "Providing order status"
+              SampleUtterances:
+                - Utterance: "I want to check the status of my order"
+                - Utterance: "I want to track my order"
+                - Utterance: "I would like to track my order"
+              SlotPriorities:
+                - Priority: 1
+                  SlotName: orderNumber
+              Slots:
+                - Name: orderNumber
+                  SlotTypeName: AMAZON.Number
+                  ValueElicitationSetting:
+                    SlotConstraint: Required
+                    PromptSpecification:
+                      MaxRetries: 2
+                      MessageGroupsList:
+                        - Message:
+                            PlainTextMessage:
+                              Value: "Sure. I can help you with that. Can i please have your order number?"
+              IntentConfirmationSetting:
+                PromptSpecification:
+                  MaxRetries: 2
+                  MessageGroupsList:
+                    - Message: 
+                        PlainTextMessage:
+                          Value: "You order number is {orderNumber}. Is that correct?"
+              FulfillmentCodeHook:
+                Enabled: false
+                IsActive: true
+                PostFulfillmentStatusSpecification:
+                  SuccessResponse:
+                    MessageGroupsList:
+                      - Message:
+                          PlainTextMessage:
+                            Value: "Thank You. I have successfully created a track request for your order. We will send you tracking information via email within the next 15 minutes."               
+            - Name: "manifest"
+              Description: "Providing manifest related information"
+              SampleUtterances:
+                - Utterance: "Can I get the manifest document"
+                - Utterance: "Get me Mani Fest"
+              SlotPriorities:
+                - Priority: 1
+                  SlotName: manifestNumber
+              Slots:
+                - Name: manifestNumber
+                  SlotTypeName: AMAZON.Number
+                  ValueElicitationSetting:
+                    SlotConstraint: Required
+                    PromptSpecification:
+                      MaxRetries: 2
+                      MessageGroupsList:
+                        - Message:
+                            PlainTextMessage:
+                              Value: "Sure. I can help you with that. Can i please have your manifest number?"
+              IntentConfirmationSetting:
+                PromptSpecification:
+                  MaxRetries: 2
+                  MessageGroupsList:
+                    - Message: 
+                        PlainTextMessage:
+                          Value: "You manifest number is {manifestNumber}. Is that correct?"
+              FulfillmentCodeHook:
+                Enabled: false
+                IsActive: true
+                PostFulfillmentStatusSpecification:
+                  SuccessResponse:
+                    MessageGroupsList:
+                      - Message:
+                          PlainTextMessage:
+                            Value: "Thank You. I have found your manifest file. We will send you the information via email within the next 5 minutes." 
+            - Name: "FallbackIntent"
+              Description: "Default intent when no other intent matches"
+              ParentIntentSignature: "AMAZON.FallbackIntent"
+              FulfillmentCodeHook:
+                  Enabled: true
+              DialogCodeHook:
+                  Enabled: true
+  AmazonLexBotVersion:
+    Type: AWS::Lex::BotVersion
+    Properties:
+      BotId: !Ref AmazonLexBot
+      BotVersionLocaleSpecification:
+        - LocaleId: en_US
+          BotVersionLocaleDetails:
+            SourceBotVersion: DRAFT
+      Description: AmazonLexBot Version
+  AmazonLexBotAlias:
+    Type: AWS::Lex::BotAlias
+    Properties:
+      BotId: !Ref AmazonLexBot
+      BotAliasName: !Ref AmazonLexBotAliasName
+      BotAliasLocaleSettings:
+        - LocaleId: en_US
+          BotAliasLocaleSetting:
+            Enabled: true
+            CodeHookSpecification: 
+              LambdaCodeHook:
+                CodeHookInterfaceVersion: "1.0"
+                LambdaArn: !GetAtt AWSLambdaFunction.Arn
+      BotVersion: !GetAtt AmazonLexBotVersion.BotVersion
+      SentimentAnalysisSettings:
+        DetectSentiment: true
+
+  ##########################################################################
+  #  Amazon Connect                                                        #
+  ##########################################################################
+  AmazonConnectInstance:
+      Type: "AWS::Connect::Instance"
+      Properties:
+        Attributes:
+            AutoResolveBestVoices: true
+            ContactflowLogs: true
+            ContactLens: true
+            EarlyMedia: true
+            InboundCalls: true
+            OutboundCalls: true
+        IdentityManagementType: CONNECT_MANAGED
+        InstanceAlias: !Ref 'AmazonConnectName'
+  AmazonConnectPhoneNumber:
+      Type: "AWS::Connect::PhoneNumber"
+      Properties:
+          TargetArn: !GetAtt AmazonConnectInstance.Arn
+          Description: "An example phone number"
+          Type: "DID"
+          CountryCode: CA
+          Tags:
+            - Key: testkey
+              Value: testValue
+  IntegrationAssociation: 
+      Type: AWS::Connect::IntegrationAssociation
+      Properties:
+        InstanceId: !GetAtt AmazonConnectInstance.Arn
+        IntegrationType: LEX_BOT
+        IntegrationArn: !GetAtt AmazonLexBotAlias.Arn 
+  InvokeFunctionPermission:
+      Type: AWS::Lambda::Permission
+      Properties:
+        FunctionName: !GetAtt AWSLambdaFunction.Arn
+        Action: lambda:InvokeFunction
+        Principal: lexv2.amazonaws.com
+        SourceAccount: !Ref 'AWS::AccountId'
+        SourceArn: !GetAtt AmazonLexBotAlias.Arn
+
+##########################################################################
+#   OUTPUTS                                                              #
+##########################################################################
+Outputs:
+  LambdaName:
+    Value: !Ref 'AWSLambdaFunction'
+    Description: Name of Lambda Function
+  AmazonConnectInstance:
+    Value: !Ref 'AmazonConnectInstance'
+    Description: Amazon Connect ID
+  AmazonLexBot:
+    Value: !Ref 'AmazonLexBot'
+    Description: Amazon Lex Bot ID
