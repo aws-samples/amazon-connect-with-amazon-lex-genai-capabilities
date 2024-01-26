@@ -57,7 +57,7 @@ bash ./scripts/deploy.sh region cfn-stack-name
 "Successfully created CloudFormation stack".
 ```
 
-If you don't want to build the contact flow from scratch in Amazon Connect, you can import the sample flow provided with this repository.
+If you don't want to build the contact flow from scratch in Amazon Connect, you can import the sample flow provided with this repository[filelocation: /contactflowsample/samplecontactflow.json].
 
   5. Log in to your Amazon Connect instance. The account must be assigned a security profile that includes edit permissions for flows.
   6. On the Amazon Connect console, in the navigation pane, under Routing, choose Contact flows.
@@ -65,7 +65,8 @@ If you don't want to build the contact flow from scratch in Amazon Connect, you 
   8. Choose Save and Import flow.
   9. Select the file to import, and choose Import. 
   
-When the flow is imported into an existing flow, the name of the existing flow is updated, too. [filelocation: /contactflowsample]
+When the flow is imported into an existing flow, the name of the existing flow is updated, too.
+
   10. Review and update any resolved or unresolved references as necessary.
   11. To save the imported flow, choose Save. To publish, choose Save and Publish.
   12. After you upload the contactflow, update the following configurations
