@@ -27,8 +27,8 @@ To implement the solution, complete the following steps:
 1.	Clone the repository:
 
 ```bash
-git clone <repository url>
-cd <repository folder>
+git clone https://github.com/aws-samples/amazon-connect-with-amazon-lex-genai-capabilities
+cd amazon-connect-with-amazon-lex-genai-capabilities
 ```
 
 2. Run the following command to initialize the environment and create an Amazon Elastic Container Registry(Amazon ECR) repository for our AWS Lambda function's image. Provide the AWS Region and ECR repository name that you would like to create.
