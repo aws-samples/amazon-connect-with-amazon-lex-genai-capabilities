@@ -35,9 +35,8 @@ cd <repository folder>
 
 ```bash
 bash ./scripts/build.sh region-name respositry-name
-```
 
-Outputs: "123456789.dkr.ecr.us-east-1.amazonaws.com/test:latest"
+```
 
 3. Update the ParameterValue fields in the scripts/parameters.json file.
    1. ParameterKey ("AmazonECRImageUri") - Enter the repository URL from the previous step.
@@ -52,8 +51,8 @@ Outputs: "123456789.dkr.ecr.us-east-1.amazonaws.com/test:latest"
 
 ```bash
 bash ./scripts/deploy.sh region cfn-stack-name
+
 ```
-Outputs: "Successfully created CloudFormation stack"
 
 If you don't want to build the contact flow from scratch in Amazon Connect, you can import the sample flow provided with this repository[filelocation: /contactflowsample/samplecontactflow.json].
 
@@ -76,8 +75,8 @@ To clean up your resources, run the following command to delete the ECR reposito
 
 ```bash
 bash ./scripts/cleanup.sh region repositry-name cfn-stack-name
+
 ```
-Outputs: "Successfully deleted CloudFormation stack"
 
 ## Authors and acknowledgment
 * Hamza Nadeem
