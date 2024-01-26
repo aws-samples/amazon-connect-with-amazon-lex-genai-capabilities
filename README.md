@@ -40,13 +40,13 @@ bash ./scripts/build.sh region-name respositry-name
 ```
 
 3. Update the ParameterValue fields in the scripts/parameters.json file.
-  * ParameterKey ("AmazonECRImageUri") - Enter the repository URL from the previous step.
-  * ParameterKey ("AmazonConnectName") - Enter a unique name.
-  * ParameterKey ("AmazonLexBotName")  - Enter a unique name.
-  * ParameterKey ("AmazonLexBotAliasName") - The default is "prodversion" ; you can change it if needed.
-  * ParameterKey ("LoggingLevel") - The default is "INFO"; you can change it if required. Valid values are DEBUG, WARN, and ERROR.
-  * ParameterKey ("ModelID") - The default is "anthropic.claude-instant-v1"; you can change it if you need to use a different model.
-  * ParameterKey ("AmazonConnectName") - The default is "0.75"; you can change it if you need to update the confidence score.
+    1. ParameterKey ("AmazonECRImageUri") - Enter the repository URL from the previous step.
+    2. ParameterKey ("AmazonConnectName") - Enter a unique name.
+    3. ParameterKey ("AmazonLexBotName")  - Enter a unique name.
+    4. ParameterKey ("AmazonLexBotAliasName") - The default is "prodversion" ; you can change it if needed.
+    5. ParameterKey ("LoggingLevel") - The default is "INFO"; you can change it if required. Valid values are DEBUG, WARN, and ERROR.
+    6. ParameterKey ("ModelID") - The default is "anthropic.claude-instant-v1"; you can change it if you need to use a different model.
+    7. ParameterKey ("AmazonConnectName") - The default is "0.75"; you can change it if you need to update the confidence score.
 
 
 4. Run the command to generate the cloudformation stack and deploy the resources:
