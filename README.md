@@ -35,7 +35,7 @@ cd <repository folder>
 
 ```bash
 bash ./scripts/build.sh region-name respositry-name
- …
+
 "123456789.dkr.ecr.us-east-1.amazonaws.com/test:latest"
 ```
 
@@ -78,7 +78,7 @@ To clean up your resources, run the following command to delete the ECR reposito
 
 ```bash
 bash ./scripts/cleanup.sh region repositry-name cfn-stack-name
- …
+
 "Successfully deleted CloudFormation stack"
 ```
 
