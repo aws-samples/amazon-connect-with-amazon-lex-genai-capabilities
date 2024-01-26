@@ -54,7 +54,7 @@ bash ./scripts/build.sh region-name respositry-name
 ```bash
 bash ./scripts/deploy.sh region cfn-stack-name
 
-"Successfully created CloudFormation stack".
+"Successfully created CloudFormation stack"
 ```
 
 If you don't want to build the contact flow from scratch in Amazon Connect, you can import the sample flow provided with this repository[filelocation: /contactflowsample/samplecontactflow.json].
@@ -79,7 +79,7 @@ To clean up your resources, run the following command to delete the ECR reposito
 ```bash
 bash ./scripts/cleanup.sh region repositry-name cfn-stack-name
  …
-Successfully deleted CloudFormation stack..
+"Successfully deleted CloudFormation stack"
 ```
 
 ## Authors and acknowledgment
