@@ -35,9 +35,9 @@ cd <repository folder>
 
 ```bash
 bash ./scripts/build.sh region-name respositry-name
-
-"123456789.dkr.ecr.us-east-1.amazonaws.com/test:latest"
 ```
+
+Outputs: "123456789.dkr.ecr.us-east-1.amazonaws.com/test:latest"
 
 3. Update the ParameterValue fields in the scripts/parameters.json file.
    1. ParameterKey ("AmazonECRImageUri") - Enter the repository URL from the previous step.
@@ -48,14 +48,12 @@ bash ./scripts/build.sh region-name respositry-name
    6. ParameterKey ("ModelID") - The default is "anthropic.claude-instant-v1"; you can change it if you need to use a different model.
    7. ParameterKey ("AmazonConnectName") - The default is "0.75"; you can change it if you need to update the confidence score.
 
-
 4. Run the command to generate the cloudformation stack and deploy the resources:
 
 ```bash
 bash ./scripts/deploy.sh region cfn-stack-name
-
-"Successfully created CloudFormation stack"
 ```
+Outputs: "Successfully created CloudFormation stack"
 
 If you don't want to build the contact flow from scratch in Amazon Connect, you can import the sample flow provided with this repository[filelocation: /contactflowsample/samplecontactflow.json].
 
@@ -78,9 +76,8 @@ To clean up your resources, run the following command to delete the ECR reposito
 
 ```bash
 bash ./scripts/cleanup.sh region repositry-name cfn-stack-name
-
-"Successfully deleted CloudFormation stack"
 ```
+Outputs: "Successfully deleted CloudFormation stack"
 
 ## Authors and acknowledgment
 * Hamza Nadeem
