@@ -29,12 +29,13 @@ To implement the solution, complete the following steps:
 ```bash
 git clone https://github.com/aws-samples/amazon-connect-with-amazon-lex-genai-capabilities
 cd amazon-connect-with-amazon-lex-genai-capabilities
+
 ```
 
 2. Run the following command to initialize the environment and create an Amazon Elastic Container Registry(Amazon ECR) repository for our AWS Lambda function's image. Provide the AWS Region and ECR repository name that you would like to create.
 
 ```bash
-bash ./scripts/build.sh region-name respositry-name
+bash ./scripts/build.sh region-name respository-name
 
 ```
 
@@ -74,7 +75,7 @@ When the flow is imported into an existing flow, the name of the existing flow i
 To clean up your resources, run the following command to delete the ECR repository and CloudFormation stack:
 
 ```bash
-bash ./scripts/cleanup.sh region repositry-name cfn-stack-name
+bash ./scripts/cleanup.sh region repository-name cfn-stack-name
 
 ```
 
