@@ -35,7 +35,7 @@ cd amazon-connect-with-amazon-lex-genai-capabilities
 2. Run the following command to initialize the environment and create an Amazon Elastic Container Registry(Amazon ECR) repository for our AWS Lambda function's image. Provide the AWS Region and ECR repository name that you would like to create.
 
 ```bash
-bash ./scripts/build.sh region-name respository-name
+bash ./scripts/build.sh region-name repository-name
 
 ```
 
@@ -68,8 +68,8 @@ When the flow is imported into an existing flow, the name of the existing flow i
   10. Review and update any resolved or unresolved references as necessary.
   11. To save the imported flow, choose Save. To publish, choose Save and Publish.
   12. After you upload the contactflow, update the following configurations
-     [a.] Update the 'GetCustomerInput' blocks with the correct Amazon Lex bot name and version.
-     [b.] Under Manage Phone Number, update the number with the contactflow or IVR imported earlier.
+      1. Update the 'GetCustomerInput' blocks with the correct Amazon Lex bot name and version.
+      2. Under Manage Phone Number, update the number with the contactflow or IVR imported earlier.
 
 ## Clean up
 To clean up your resources, run the following command to delete the ECR repository and CloudFormation stack:
