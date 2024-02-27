@@ -86,6 +86,7 @@ Resources:
             Action:
               - polly:SynthesizeSpeech,
               - comprehend:DetectSentiment
+            Resource: '*'
             
 
   ##########################################################################
