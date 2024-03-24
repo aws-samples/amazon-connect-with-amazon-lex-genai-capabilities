@@ -1,4 +1,4 @@
-boto3
-langchain
-transformers
-pandas
+boto3==1.28.60
+langchain==0.0.309
+transformers==4.34.0
+pandas==2.1.1

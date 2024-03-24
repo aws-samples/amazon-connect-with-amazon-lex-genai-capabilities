@@ -57,9 +57,9 @@ Resources:
           - Effect: Allow
             Resource: "*"
             Action:
-              - lex:ListSlotTypes,
-              - lex:DescribeIntent,
-              - lex:ListIntents,
+              - lex:ListSlotTypes
+              - lex:DescribeIntent
+              - lex:ListIntents
               - lex:ListSlots
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
@@ -86,8 +86,7 @@ Resources:
             Action:
               - polly:SynthesizeSpeech,
               - comprehend:DetectSentiment
-            Resource: '*'
-            
+            Resource: "*"            
 
   ##########################################################################
   #  AWS Lambda Function                                                   #
