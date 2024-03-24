@@ -2,7 +2,7 @@
 
 In this solution, we showcase a practical application of Amazon Connect integration with Amazon Lex and Amazon Bedrock/Titan to improve the understanding of intents.
 
-## Overvview of the solution
+## Overview of the solution
 The solution is composed of an Amazon Connect instance with a contact flow with a ‘Get Customer Input’ block that uses Amazon Lex. Amazon Lex is configured with an AWS Lambda Function to process utterances for which the intent cannot be determined and gets routed to the FallbackIntent. 
 
 ![Architecture](./Architecture/Architecture.png)
@@ -46,7 +46,7 @@ bash ./scripts/build.sh region-name repository-name
    4. ParameterKey ("AmazonLexBotAliasName") - The default is "prodversion" ; you can change it if needed.
    5. ParameterKey ("LoggingLevel") - The default is "INFO"; you can change it if required. Valid values are DEBUG, WARN, and ERROR.
    6. ParameterKey ("ModelID") - The default is "anthropic.claude-instant-v1"; you can change it if you need to use a different model.
-   7. ParameterKey ("AmazonConnectName") - The default is "0.75"; you can change it if you need to update the confidence score.
+   7. ParameterKey ("PredictionConfidence") - The default is "0.75"; you can change it if you need to update the confidence score.
 
 4. Run the command to generate the cloudformation stack and deploy the resources:
 
